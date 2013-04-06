@@ -1,0 +1,134 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>后台管理系统</title>
+<script type="text/javascript">
+	function URL_split(paras){
+		var url = location.href;
+		var paraString = url.substring(url.indexOf("?")+1, url.length).split("&"); 
+		var paraObj = {}
+		for (i=0; j=paraString[i]; i++){
+		paraObj[j.substring(0,j.indexOf("=")).toLowerCase()] = j.substring(j.indexOf("=")+1,j.length);
+		}
+		var returnValue = paraObj[paras.toLowerCase()];
+		if(typeof(returnValue)=="undefined"){
+			return "";
+		}else{
+			return returnValue;
+		} 
+	}
+</script>
+<style type="text/css">
+	#tab {
+		width:500px;
+	}
+	.tarea{
+		resize:none;
+	}
+	#cover{
+		width:300px;
+		height:250px;
+		position:absolute;
+		top:0;
+		left:30%;
+	}
+	#submit{
+		color:white;
+		text-align:center;
+		background: url(../button.jpg);
+		width:70px;
+		height:30px;
+		margin-left: 90%;
+	}
+</style>
+</head>
+<body>
+	<?php 
+		$id = $_GET['book_ID'];
+		@$conn = mysql_connect('125.221.225.210:3306','root','88888888');
+		@mysql_select_db('db_BookStore',$conn);
+		mysql_query("set names utf8");
+
+		$sql = "SELECT * FROM tb_BookInfo, tb_BookPrice, tb_BookCount WHERE tb_BookInfo.book_ID ={$id}";
+		$arr = mysql_query($sql, $conn);
+		if($arr)
+		{
+			$value = mysql_fetch_array($arr);
+		}
+		else
+		{
+			echo "<br />".mysql_error();
+		}
+		$book_menu1 .= "
+		<form name='form1' action=' ' method='post'>
+			<table>
+			<tr><td id='tab'>
+				<label for='bookid'>书籍编号:</label>
+				<input type='text' name='bookid' value='$value[0]' readonly /><br /><br />
+				<label for='bookname'>书籍名称:</label>
+				<input type='text' name='bookname' value='$value[1]' /><br /><br />
+				<label for='bookauthor'>书籍作者:</label>
+				<input type='text' name='bookauthor' value='$value[6]' /><br /><br />
+				<label for='bookpublisher'>&nbsp出&nbsp版&nbsp商:</label>
+				<input type='text' name='bookpublisher' value='$value[2]' /><br /><br />
+				<label for='bookcover'>封面编号:</label>
+				<input type='text' name='bookcover' value='$value[5]' /><br /><br /><br />
+				<label for='bookintro'>书籍简介:</label><br />
+				<textarea name='bookintro' class='tarea' cols='80' rows='8'>$value[3]</textarea><br /><br />
+				<label for='bookcatalog'>书籍目录:</label><br />
+				<textarea name='bookcatalog' class='tarea' cols='80' rows='8'>$value[4]</textarea><br />
+				<label for='bookprice'>书籍价格:</label>
+				<input type='text' name='bookprice' value='$value[8]' /><br />
+				<label for='booktotalcount'>书籍总量:</label>
+				<input type='text' name='booktotalcount' value='$value[10]' /><br />
+				<label for='bookrestcount'>书籍余量:</label>
+				<input type='text' name='bookrestcount' value='$value[11]' /><br />
+				<img id='cover' src='../../images/$value[5]' />
+				<input type='submit' name='submit' value='提  交' id='submit' align='right'/>
+			</td></tr>
+		</form>";
+		echo $book_menu1;	
+	?>
+	<?php
+		if($_POST['submit']=='提  交')
+		{
+			$book_ID = $_POST['bookid'];
+			$book_Name = $_POST['bookname'];
+			$book_Publisher = $_POST['bookpublisher'];
+			$book_Intro = $_POST['bookintro'];
+			$book_Catalog = $_POST['bookcatalog'];
+			$book_Cover = $_POST['bookcover'];
+			$book_Author = $_POST['bookauthor'];
+			$book_Price = $_POST['bookprice'];
+			$book_CountTotal = $_POST['booktotalcount'];
+			$book_CountRest = $_POST['bookrestcount'];
+		//	echo "<script language='javascript'>alert('$book_Name')</script>";
+			if(!empty($book_ID) && !empty($book_Name) && !empty($book_Publisher) && !empty($book_Cover) && !empty($book_Intro)
+			 && !empty($book_Author) && !empty($book_Price) && !empty($book_CountTotal) &&  !empty($book_CountRest))
+			{
+			//	echo "<script language='javascript'>alert('$book_Name')</script>";
+			$sql = "update tb_BookInfo,tb_BookCount,tb_BookPrice 
+				set tb_BookInfo.book_Name='$book_Name', 
+				tb_BookInfo.book_Publisher='$book_Publisher', 
+				tb_BookInfo.book_Intro='$book_Intro',
+				tb_BookInfo.book_Catalog='$book_Catalog', 
+				tb_BookInfo.book_Cover='$book_Cover',
+				tb_BookInfo.book_Author='$book_Author',
+				tb_BookPrice.book_Price='$book_Price',
+				tb_BookCount.book_CountTotal='$book_CountTotal',
+				tb_BookCount.book_CountRest='$book_CountRest' 
+				where tb_BookInfo.book_ID=$book_ID";
+				$arr = mysql_query($sql, $conn);
+				if($arr)
+				{
+					echo "<script language='javascript'>alert('修改成功')</script>";
+				}
+				else
+				{
+					echo "<script language='javascript'>alert('".mysql_error()."')</script>";
+				}
+			}
+		}
+	?>
+</body>
+</html>

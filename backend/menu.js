@@ -1,17 +1,3 @@
-//document.write("<script language='javascript' src='main.js'></script>");
-/*
-function _add(parentNode,element,tag)
-{
-	var length = element.length;
-	var i;
-	for(i=0 ; i<length ; i++)
-	{
-		var obj = document.createElement("li");
-		obj.innerHTML = "<a style='Cursor:pointer' onclick='"+tag+"_menu"+i+"_onclick()'>" + element[i] + "</a>";
-		parentNode.appendChild(obj);
-	}
-}
-*/
 function _remove(parentNode)
 {
 	while(parentNode.firstChild)
@@ -59,3 +45,17 @@ function management_User()
 	obj3.innerHTML = "<a style='Cursor:pointer' onclick='User_menu"+3+"_onclick()'>删除用户</a>";
 	ul.appendChild(obj3);
 }
+//document.write("<script language='javascript' src='main.js'></script>");
+/*
+function _add(parentNode,element,tag)
+{
+	var length = element.length;
+	var i;
+	for(i=0 ; i<length ; i++)
+	{
+		var obj = document.createElement("li");
+		obj.innerHTML = "<a style='Cursor:pointer' onclick='"+tag+"_menu"+i+"_onclick()'>" + element[i] + "</a>";
+		parentNode.appendChild(obj);
+	}
+}
+*/

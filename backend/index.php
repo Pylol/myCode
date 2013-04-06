@@ -23,7 +23,6 @@ html>body{		/*-- for !IE6.0 --*/
 	left: 0px;
 	right: 0px;
 	bottom: 0px;
-	
 }
 body {
 	border:8px solid #ffffff;
@@ -238,11 +237,9 @@ padding-left:20PX;
 	</div>
 	<div id="right"> 
 	<div id="current">&nbsp;&nbsp;&nbsp;&nbsp;当前位置:</div>
-<div id="form">
-<form action=" " method="post">
-	<div id="main" style="overflow:scroll;height:100%;">
-		<script type="text/javascript" src="main.php">
-		</script>	
+	<div id="main" style="overflow:scroll;height:100%;margin-left:-10px;">
+	<script type="text/javascript" src="menu_onclick.js"></script>	
+	<iframe id="iframe" src='' style="width:100%;height:100%;"></iframe>
 	</div>
 </form>
 
