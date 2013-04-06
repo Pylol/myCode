@@ -1,0 +1,12 @@
+.gitignore.swo
+.gitignore.swp
+test.*
+/document
+backend/备份
+main.js
+backend/test.*
+*.html~
+*.php~
+*~
+backend/*.html~
+backend/*.php~

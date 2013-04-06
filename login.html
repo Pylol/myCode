@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<meta http-equiv="Content-Type" content="image/png">
+<head>
+	<title>登陆</title>
+	<script type="text/javascript">
+	function init_onload()
+	{
+		document.form1.Email.value = "";
+		document.form1.passwd.value = "";
+		document.form1.verificate.value = "";
+	}
+	</script>
+</head>
+<body onload="init_onload()">
+	<form name="form1" action="login.php" method="post">
+		<label for="Email">Email:</label>
+		<input type="text" name="Email"/>
+		<br />
+		<label for="Passwd">密码:</label>
+		<input type="password" name="passwd"/>
+		<br />
+		<label for="verificate">验证码:</label>
+		<input type="text" name="verificate" />
+		<a href=""><img src="code.php" alt="验证码"/></a>
+		<br />
+		<input type="submit" value="登陆" />
+	</form>
+	<p id="error_info"></p>
+</body>
+</html>
