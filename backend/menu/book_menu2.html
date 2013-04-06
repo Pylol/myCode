@@ -1,0 +1,71 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>后台管理系统</title>
+<script type="text/javascript">
+function cover_onchange()
+{
+	var img = document.getElementById('cover')
+	img.src = "../../images/" + document.form1.bookcover.value();
+}
+</script>
+<style type="text/css">
+	#tab {
+		width:500px;
+	}
+	.tarea{
+		resize:none;
+	}
+	#cover{
+		width:300px;
+		height:250px;
+		position:absolute;
+		top:0;
+		left:30%;
+	}
+	#submit{
+		color:white;
+		text-align:center;
+		background: url(../button.jpg);
+		width:70px;
+		height:30px;
+		margin-left: 90%;
+	}
+</style>
+</head>
+<body>
+	<form name='form1' action=' ' method='post'>
+		<table>
+		<tr>
+		<td id='tab'>
+			<label for='bookid'>书籍编号:</label>
+			<input type='text' name='bookid' value='' readonly /><br /><br />
+			<label for='bookname'>书籍名称:</label>
+			<input type='text' name='bookname' value='' /><br /><br />
+			<label for='bookauthor'>书籍作者:</label>
+			<input type='text' name='bookauthor' value='' /><br /><br />
+			<label for='bookpublisher'>&nbsp出&nbsp版&nbsp商:</label>
+			<input type='text' name='bookpublisher' value='' /><br /><br />
+			<label for='bookcover'>封面编号:</label>
+			<input type='text' name='bookcover' value='' onchange="cover_onchange()"/><br /><br /><br />
+			<label for='bookintro'>书籍简介:</label><br />
+			<textarea name='bookintro' class='tarea' cols='80' rows='8'></textarea><br /><br />
+			<label for='bookcatalog'>书籍目录:</label><br />
+			<textarea name='bookcatalog' class='tarea' cols='80' rows='8'></textarea><br />
+			<label for='bookprice'>书籍价格:</label>
+			<input type='text' name='bookprice' value='' /><br />
+			<label for='booktotalcount'>书籍总量:</label>
+			<input type='text' name='booktotalcount' value='' /><br />
+			<label for='bookrestcount'>书籍余量:</label>
+			<input type='text' name='bookrestcount' value='' /><br />
+			<img id='cover' src='' />
+			<input type='submit' name='submit' value='提  交' id='submit' align='right'/>
+
+			<input type="text" size="20" name="upfile" id="upfile" style="border:1px dotted #ccc"> 
+			<input type="button" value="浏览" onclick="path.click()" style="border:1px solid #ccc;background:#fff"> 
+			<input type="file" id="path" style="display:none" onchange="upfile.value=this.value">
+		</td>
+		</tr>
+	</form>
+</body>
+</html>

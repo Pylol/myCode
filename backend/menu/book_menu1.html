@@ -2,22 +2,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>后台管理系统</title>
-<script type="text/javascript">
-	function URL_split(paras){
-		var url = location.href;
-		var paraString = url.substring(url.indexOf("?")+1, url.length).split("&"); 
-		var paraObj = {}
-		for (i=0; j=paraString[i]; i++){
-		paraObj[j.substring(0,j.indexOf("=")).toLowerCase()] = j.substring(j.indexOf("=")+1,j.length);
-		}
-		var returnValue = paraObj[paras.toLowerCase()];
-		if(typeof(returnValue)=="undefined"){
-			return "";
-		}else{
-			return returnValue;
-		} 
-	}
-</script>
 <style type="text/css">
 	#tab {
 		width:500px;
@@ -102,12 +86,10 @@
 			$book_Price = $_POST['bookprice'];
 			$book_CountTotal = $_POST['booktotalcount'];
 			$book_CountRest = $_POST['bookrestcount'];
-		//	echo "<script language='javascript'>alert('$book_Name')</script>";
 			if(!empty($book_ID) && !empty($book_Name) && !empty($book_Publisher) && !empty($book_Cover) && !empty($book_Intro)
 			 && !empty($book_Author) && !empty($book_Price) && !empty($book_CountTotal) &&  !empty($book_CountRest))
 			{
-			//	echo "<script language='javascript'>alert('$book_Name')</script>";
-			$sql = "update tb_BookInfo,tb_BookCount,tb_BookPrice 
+				$sql = "update tb_BookInfo,tb_BookCount,tb_BookPrice 
 				set tb_BookInfo.book_Name='$book_Name', 
 				tb_BookInfo.book_Publisher='$book_Publisher', 
 				tb_BookInfo.book_Intro='$book_Intro',
@@ -122,10 +104,6 @@
 				if($arr)
 				{
 					echo "<script language='javascript'>alert('修改成功')</script>";
-				}
-				else
-				{
-					echo "<script language='javascript'>alert('".mysql_error()."')</script>";
 				}
 			}
 		}
