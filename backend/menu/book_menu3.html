@@ -1,0 +1,107 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>后台管理系统</title>
+<script type='text/javascript'>
+</script>
+<style type="text/css">
+<!--
+#content_tr{
+	border:1px solid #73BDE8;
+}
+#content_tr td{
+	font-size:15px;
+	text-align: center;
+	width:330px;
+}
+#content_tr td.header_td{
+	background-color:#73BDE8;
+	color: white;
+	font-size:20px;
+	text-align: center;
+	width:330px;
+}
+#offshelf{
+	float: right;
+}
+-->
+</style>
+<script type="text/javascript">
+</script>
+</head>
+<body>
+	<table id='content_tr'>
+		<tr>
+			<td style='width:50px;' class='header_td'>编号</td>
+			<td  class='header_td'>名称</td>
+			<td  class='header_td'>作者</td>
+			<td  class='header_td'>出版社</td>
+			<td style='width:50px;'  class='header_td'>库存</td>
+		</tr>
+		<?php
+			$bookid = $_GET['book_ID'];
+			if(isset($bookid))
+			{
+				$conn = mysql_connect('125.221.225.210:3306','root','88888888');
+				mysql_select_db('db_BookStore',$conn);
+				mysql_query("set names utf8");
+				$sql = "SELECT tb_BookInfo.book_ID, book_Name, book_Author, book_Publisher, book_CountRest FROM tb_BookInfo, tb_BookCount 
+				WHERE tb_BookInfo.book_ID = tb_BookCount.book_ID and tb_BookInfo.book_ID={$bookid}";
+				$arr = mysql_query($sql,$conn);
+				while(@$value = mysql_fetch_array($arr))
+				{
+					if($value[4] < 256)
+					{
+						$color = "red";
+					}
+					else
+					{
+						$color = "black";
+					}
+					$book_menu3 .= "<tr>
+										<td style='width:50px;'>$value[0]</td>
+										<td>$value[1]</td>
+										<td>$value[2]</td>
+										<td>$value[3]</td>
+										<td style='width:50px;color:$color;'>$value[4]</td>
+									</tr>";
+				}
+				echo $book_menu3;
+			}
+		?>
+	</table>
+	<?php
+		$book_offshelf = "<form action=' ' method='post' name='form1'>
+							<input type='submit' name='submit' value='确定下架' id='offshelf' onclick='return confirm(\"你确定要继续？\")'>
+						</form>";
+		echo $book_offshelf;
+	?>
+	<?php	
+		if(isset($_POST['submit']) && $_POST['submit'] == '确定下架')
+		{
+			$sql = "select book_Cover from tb_BookInfo where book_ID=$bookid";
+			echo $sql;
+			$arr = mysql_query($sql, $conn) or die("图片获取失败");
+			if($arr)
+			{
+				$value = mysql_fetch_array($arr);
+				$cover_location = "../../images/{$value[0]}";
+				$suc = unlink($cover_location);
+				if(!$suc)
+				{
+					echo "<script language='javascript'>alert('图片删除失败请手动删除！{$cover_location}');</script>";
+				}
+			}
+			$sql = "delete from tb_BookCount where book_ID={$bookid}";
+			$arr = mysql_query($sql, $conn)   or die("删除tb_BookCount记录失败");
+			$sql = "delete from tb_BookPrice where book_ID={$bookid}";
+			$arr = mysql_query($sql, $conn)   or die("删除tb_BookPrice记录失败");
+			$sql = "delete from tb_BookComment where book_ID={$bookid}";
+			$arr = mysql_query($sql, $conn)   or die("删除tb_BookComment记录失败");
+			$sql = "delete from tb_BookInfo where book_ID={$bookid}";
+			$arr = mysql_query($sql, $conn)   or die("删除tb_BookInfo记录失败");
+			header("Location:book_menu3.html?book_ID={$bookid}");
+		}
+	?>
+</body>
+</html>

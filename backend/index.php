@@ -197,6 +197,7 @@ padding-left:20PX;
 -->
 </style>
 <script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript" src="menu_onclick.js"></script>
 </head>
 <body>
 <div id="mainDiv">
@@ -238,7 +239,6 @@ padding-left:20PX;
 	<div id="right"> 
 	<div id="current">&nbsp;&nbsp;&nbsp;&nbsp;当前位置:</div>
 	<div id="main" style="overflow:scroll;height:100%;margin-left:-10px;">
-	<script type="text/javascript" src="menu_onclick.js"></script>	
 	<iframe id="iframe" src='' style="width:100%;height:100%;"></iframe>
 	</div>
 </form>

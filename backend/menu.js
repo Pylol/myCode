@@ -21,7 +21,7 @@ function management_Book()
 	obj2.innerHTML = "<a style='Cursor:pointer' onclick='Book_menu"+2+"_onclick()'>新书上架</a>";
 	ul.appendChild(obj2);
 	var obj3 = document.createElement("li");
-	obj3.innerHTML = "<a style='Cursor:pointer' onclick='Book_menu"+3+"_onclick()'>旧书下架</a>";
+	obj3.innerHTML = "<a style='Cursor:pointer' onclick='Book_menu"+3+"_onclick()'>书籍下架</a>";
 	ul.appendChild(obj3);
 	var obj4 = document.createElement("li");
 	obj4.innerHTML = "<a style='Cursor:pointer' onclick='Book_menu"+4+"_onclick()'>交易订单</a>";

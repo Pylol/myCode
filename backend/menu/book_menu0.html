@@ -37,7 +37,7 @@
 			$conn = mysql_connect('125.221.225.210:3306','root','88888888');
 			mysql_select_db('db_BookStore',$conn);
 			mysql_query("set names utf8");
-			$sql = "SELECT tb_BookInfo.book_ID, book_Name, book_Author, book_Publisher, book_CountRest FROM tb_BookInfo, tb_BookCount";
+			$sql = "SELECT tb_BookInfo.book_ID, book_Name, book_Author, book_Publisher, book_CountRest FROM tb_BookInfo, tb_BookCount WHERE tb_BookInfo.book_ID = tb_BookCount.book_ID LIMIT 0 , 30";
 			$arr = mysql_query($sql,$conn);
 			while($value = mysql_fetch_array($arr))
 			{
