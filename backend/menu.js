@@ -31,11 +31,14 @@ function management_User()
 {
 	var ul = document.getElementById("li_Element");
 	_remove(ul);
-	var element_list = new Array("所有用户","信息编辑","添加用户","删除用户");
+	var element_list = new Array("所有用户","敬请期待");
 	var obj0 = document.createElement("li");
 	obj0.innerHTML = "<a style='Cursor:pointer' onclick='User_menu"+0+"_onclick()'>所有用户</a>";
 	ul.appendChild(obj0);
-	var obj1 = document.createElement("li");
+	var obj0 = document.createElement("li");
+	obj0.innerHTML = "<a style='Cursor:pointer' onclick='User_menu"+0+"_onclick()'>敬请期待</a>";
+	ul.appendChild(obj0);
+/*	var obj1 = document.createElement("li");
 	obj1.innerHTML = "<a style='Cursor:pointer' onclick='User_menu"+1+"_onclick()'>信息编辑</a>";
 	ul.appendChild(obj1);
 	var obj2 = document.createElement("li");
@@ -44,18 +47,11 @@ function management_User()
 	var obj3 = document.createElement("li");
 	obj3.innerHTML = "<a style='Cursor:pointer' onclick='User_menu"+3+"_onclick()'>删除用户</a>";
 	ul.appendChild(obj3);
-}
-//document.write("<script language='javascript' src='main.js'></script>");
-/*
-function _add(parentNode,element,tag)
-{
-	var length = element.length;
-	var i;
-	for(i=0 ; i<length ; i++)
-	{
-		var obj = document.createElement("li");
-		obj.innerHTML = "<a style='Cursor:pointer' onclick='"+tag+"_menu"+i+"_onclick()'>" + element[i] + "</a>";
-		parentNode.appendChild(obj);
-	}
-}
 */
+}
+function management_MySQL()
+{
+	var menu = document.getElementById('left');
+	menu.removeChild(menu.childNodes[0]);
+	document.getElementById('iframe').src = "http://125.221.225.210/phpmyadmin/index.php?db=db_BookStore";
+}

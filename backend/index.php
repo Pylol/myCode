@@ -194,57 +194,60 @@ padding-left:20PX;
 	text-align: center;
 	width:300px;
 }
+#iframe{
+	float:left;
+	z-index: 20;
+}
 -->
 </style>
-<script type="text/javascript" src="menu.js"></script>
 <script type="text/javascript" src="menu_onclick.js"></script>
+<script type="text/javascript" src="menu.js"></script>
 </head>
 <body>
 <div id="mainDiv">
 	<div id="topDiv">
-	<div id="tmenu">
-		<ul>
-			<li ><a href="">首页</a></li>
-			<li ><a style="Cursor:pointer" onclick="management_Book()">书籍管理</a></li>
-			<li ><a style="Cursor:pointer" onclick="management_User()">用户管理</a></li>
-		</ul>
-		<div id="suser" style="float:right;margin-right:20px;">
-			<span style="color:#FFAE08;font-weight:bold;">
-				<?php
-				session_start();
-				if(isset($_SESSION['S_user']))
-				{
-					echo $_SESSION['S_user']."，您好!";
-				}
-				else
-				{
-					header("Location:admin.php");
-				}
-				?>
-			</span>
-			<a href="exit.php" style="color:#0020FF;">退出</a>
+		<div id="tmenu">
+			<ul>
+				<li ><a href="">首页</a></li>
+				<li ><a style="Cursor:pointer" onclick="management_Book()">书籍管理</a></li>
+				<li ><a style="Cursor:pointer" onclick="management_User()">用户管理</a></li>
+				<li ><a style="Cursor:pointer" onclick="management_MySQL()">数据库管理</a></li>
+			</ul>
+			<div id="suser" style="float:right;margin-right:20px;">
+				<span style="color:#FFAE08;font-weight:bold;">
+					<?php
+					session_start();
+					if(isset($_SESSION['S_user']))
+					{
+						echo $_SESSION['S_user']."，您好!";
+					}
+					else
+					{
+						header("Location:admin.php");
+					}
+					?>
+				</span>
+				<a href="exit.php" style="color:#0020FF;">退出</a>
+			</div>
 		</div>
 	</div>
-	</div>
 	<div id="centerDiv">
-	
-	<div id="left">
-	<div id="lhead">管理菜单</div>
-	<ul id="li_Element">
-		<script type="text/javascript">
-			management_Book();
-		</script>
-	</ul>
+		<div id="left">
+			<div id="lhead">管理菜单</div>
+				<ul id="li_Element">
+					<script type="text/javascript">
+						management_Book();
+					</script>
+				</ul>
+			</div>
+			<div id="right"> 
+				<div id="current">&nbsp;&nbsp;&nbsp;&nbsp;当前位置:</div>
+				<div id="main" style="overflow:scroll;height:100%;margin-left:-10px;">
+					<iframe id="iframe" src='' style="width:100%;height:100%;"></iframe>
+				</div>
+			</div>
+		</div>
 	</div>
-	<div id="right"> 
-	<div id="current">&nbsp;&nbsp;&nbsp;&nbsp;当前位置:</div>
-	<div id="main" style="overflow:scroll;height:100%;margin-left:-10px;">
-	<iframe id="iframe" src='' style="width:100%;height:100%;"></iframe>
-	</div>
-</form>
-
-</div>
-</div></div>
 	<div id="bottomDiv"></div>
 </div>
 <script language="javascript">

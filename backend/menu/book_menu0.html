@@ -17,7 +17,7 @@
 	color: white;
 	font-size:20px;
 	text-align: center;
-	width:300px;
+	width:330px;
 }
 -->
 </style>
@@ -28,8 +28,9 @@
 	<table id='content_tr'>
 		<tr>
 			<td style='width:50px;' class='header_td'>编号</td>
+			<td style='width:110px;' class='header_td'>类别</td>
 			<td  class='header_td'>名称</td>
-			<td  class='header_td'>作者</td>
+			<td style='width:220px;' class='header_td'>作者</td>
 			<td  class='header_td'>出版社</td>
 			<td style='width:50px;'  class='header_td'>库存</td>
 		</tr>
@@ -37,10 +38,19 @@
 			$conn = mysql_connect('125.221.225.210:3306','root','88888888');
 			mysql_select_db('db_BookStore',$conn);
 			mysql_query("set names utf8");
-			$sql = "SELECT tb_BookInfo.book_ID, book_Name, book_Author, book_Publisher, book_CountRest FROM tb_BookInfo, tb_BookCount WHERE tb_BookInfo.book_ID = tb_BookCount.book_ID LIMIT 0 , 30";
+			$sql = "SELECT tb_BookInfo.book_ID, book_Name, book_Author, book_Publisher, book_CountRest,book_Class FROM tb_BookInfo, tb_BookCount WHERE tb_BookInfo.book_ID = tb_BookCount.book_ID LIMIT 0 , 30";
 			$arr = mysql_query($sql,$conn);
+
 			while($value = mysql_fetch_array($arr))
 			{
+				$sql = "SELECT subClass_Name,mainClass_Name
+						FROM tb_SubClass, tb_MainClass
+						WHERE subClass_ID ={$value[5]} AND tb_MainClass.mainClass_ID = tb_SubClass.mainClass_ID";
+				$res = mysql_query($sql, $conn);
+				if($res)
+				{
+					$class = mysql_fetch_array($res);
+				}
 				if($value[4] < 256)
 				{
 					$color = "red";
@@ -51,8 +61,9 @@
 				}
 				$book_menu0 .= "<tr>
 									<td style='width:50px;'>$value[0]</td>
+									<td style='width:120px;'>$class[0]/$class[1]</td>
 									<td>$value[1]</td>
-									<td>$value[2]</td>
+									<td style='width:220px;'>$value[2]</td>
 									<td>$value[3]</td>
 									<td style='width:50px;color:$color;'>$value[4]</td>
 								</tr>";
