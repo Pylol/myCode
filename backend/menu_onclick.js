@@ -12,23 +12,21 @@ function Book_menu3_onclick(){
 	var ID = prompt("请输入要下架的书籍编号:");
 	document.getElementById('iframe').src = "menu/book_menu3.html?book_ID="+ID;
 }
-function Book_menu4_onclick(){
-	alert("敬请期待~");
-	document.getElementById('iframe').src = "menu/book_menu4.html";
-}
+
 function User_menu0_onclick(){
-	alert("敬请期待~");
-	document.getElementById('iframe').src = "menu/book_menu4.html";
+	document.getElementById('iframe').src = "menu/user_menu0.html";
 }
 function User_menu1_onclick(){
 	alert("敬请期待~");
-	document.getElementById('iframe').src = "menu/book_menu4.html";
+	document.getElementById('iframe').src = "menu/1.html";
 }
-function User_menu2_onclick(){
-	alert("敬请期待~");
-	document.getElementById('iframe').src = "menu/book_menu4.html";
+
+function order_menu0_onclick(){
+	document.getElementById('iframe').src = "menu/order_menu0.html";
 }
-function User_menu3_onclick(){
-	alert("敬请期待~");
-	document.getElementById('iframe').src = "menu/book_menu4.html";
+function order_menu1_onclick(){
+	document.getElementById('iframe').src = "menu/order_menu1.html";
+}
+function order_menu2_onclick(){
+	document.getElementById('iframe').src = "menu/order_menu2.html";
 }

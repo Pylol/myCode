@@ -211,7 +211,7 @@ padding-left:20PX;
 				<li ><a href="">首页</a></li>
 				<li ><a style="Cursor:pointer" onclick="management_Book()">书籍管理</a></li>
 				<li ><a style="Cursor:pointer" onclick="management_User()">用户管理</a></li>
-				<li ><a style="Cursor:pointer" onclick="management_MySQL()">数据库管理</a></li>
+				<li ><a style="Cursor:pointer" onclick="management_order()">订单管理</a></li>
 			</ul>
 			<div id="suser" style="float:right;margin-right:20px;">
 				<span style="color:#FFAE08;font-weight:bold;">

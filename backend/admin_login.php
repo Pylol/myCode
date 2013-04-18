@@ -13,7 +13,13 @@
 	{
 		session_start();
 		$_SESSION['S_user'] = $username;
-		header("Location:index.php");
+		$now = date("Y-m-j G:i:s");
+		$sql = "update tb_SupperUser set lastvisit='$now'";
+		$result = mysql_query($sql);
+		if($result)
+		{
+			header("Location:index.php");
+		}
 	}
 	else
 	{

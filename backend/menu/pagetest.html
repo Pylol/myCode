@@ -1,0 +1,120 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>后台管理系统</title>
+<style type="text/css">
+<!--
+#content_tr{
+	border:1px solid #73BDE8;
+}
+#content_tr td{
+	font-size:15px;
+	text-align: center;
+	width:330px;
+}
+#content_tr td.header_td{
+	background-color:#73BDE8;
+	color: white;
+	font-size:20px;
+	text-align: center;
+	width:330px;
+}
+-->
+</style>
+<script type="text/javascript">
+</script>
+</head>
+<body>
+	<table id='content_tr'>
+		<tr>
+			<td style='width:50px;' class='header_td'>编号</td>
+			<td style='width:110px;' class='header_td'>类别</td>
+			<td  class='header_td'>名称</td>
+			<td style='width:220px;' class='header_td'>作者</td>
+			<td  class='header_td'>出版社</td>
+			<td style='width:50px;'  class='header_td'>库存</td>
+		</tr>
+		<?php
+			$conn = mysql_connect('125.221.225.210:3306','root','88888888');
+			mysql_select_db('db_BookStore',$conn);
+			mysql_query("set names utf8");
+			if(isset($_GET['page']))   				//判断是否存在page参数,获得页面值，否则取1
+			{
+				$page = intval($_GET['page']);
+			}
+			else
+			{
+				$page = 1;
+			}
+			$page_size = 2; //最大记录条数
+			$sql = "SELECT count(*) as amount FROM tb_BookInfo";
+			$result = mysql_query($sql);
+			$row = mysql_fetch_array($result);
+			//计算总页数
+			$amount = $row['amount'];
+			if($amount)
+			{
+				if($amount < $page_size){$page_count = 1;}
+				if($amount % $page_size){$page_count = (int)($amount / $page_size) + 1; }
+				else{$page_count = $amount / $page_size;}
+			}
+			else
+			{
+				$page_count = 0;
+			}
+			//翻页链接
+			$page_string = "";
+			if($page == 1)
+			{
+				$page_string .= "首页 | 上一页";
+			}
+			else
+			{
+				$page_string .= "<a href='?page=1'>首页</a> | <a href='?page=".($page-1)."'>上一页</a>";
+			}
+			$page_string .= "| $page |";
+			if($page == $page_count)
+			{
+				$page_string .= "下一页 | 尾页";
+			}
+			else
+			{
+				$page_string .= "<a href='?page=".($page+1)."'>下一页</a> | <a href='?page=$page_count'>尾页</a>";
+			}
+
+			$sql = "SELECT tb_BookInfo.book_ID, book_Name, book_Author, book_Publisher, book_CountRest,book_Class FROM tb_BookInfo, tb_BookCount WHERE tb_BookInfo.book_ID = tb_BookCount.book_ID LIMIT ".($page_size * ($page-1)).", $page_size";
+			$arr = mysql_query($sql,$conn);
+
+			while($value = mysql_fetch_array($arr))
+			{
+				$sql = "SELECT subClass_Name,mainClass_Name
+						FROM tb_SubClass, tb_MainClass
+						WHERE subClass_ID ={$value[5]} AND tb_MainClass.mainClass_ID = tb_SubClass.mainClass_ID";
+				$res = mysql_query($sql, $conn);
+				if($res)
+				{
+					$class = mysql_fetch_array($res);
+				}
+				if($value[4] < 256)
+				{
+					$color = "red";
+				}
+				else
+				{
+					$color = "black";
+				}
+				$book_menu0 .= "<tr>
+									<td style='width:50px;'>$value[0]</td>
+									<td style='width:120px;'>$class[0]/$class[1]</td>
+									<td>$value[1]</td>
+									<td style='width:220px;'>$value[2]</td>
+									<td>$value[3]</td>
+									<td style='width:50px;color:$color;'>$value[4]</td>
+								</tr>";
+			}
+			echo $book_menu0;
+		?>
+	</table>
+	<? echo $page_string; ?>
+</body>
+</html>

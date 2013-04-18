@@ -1,0 +1,103 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>后台管理系统</title>
+<style type="text/css">
+.title{
+	text-align: center;
+	width:80px;
+}
+.value{
+	text-align: left;
+	width: 300px;
+}
+</style>
+</head>
+<body onload="colorOfsent_onload()">
+<?php
+	$orderID = $_GET['order_ID'];
+	@$conn = mysql_connect("125.221.225.210:3306","root","88888888");
+	@mysql_select_db("db_BookStore",$conn);
+	@mysql_query("set names utf8");
+
+	$sql1 = "select * from tb_orderForm where orderForm_ID={$orderID}";
+	$arr1 = mysql_query($sql1, $conn);
+	if($arr1)
+	{
+		$orderForm = mysql_fetch_array($arr1);
+	}
+	$sql2 = "select * from tb_UserInfo where user_Email='$orderForm[1]'";
+	$arr2 = mysql_query($sql2, $conn);
+	if($arr2)
+	{
+		$userInfo = mysql_fetch_array($arr2);
+	}
+	$sql3 = "select book_Name from tb_BookInfo where book_ID={$orderForm[2]}";
+	$arr3 = mysql_query($sql3, $conn);
+	if($arr3)
+	{
+		$book = mysql_fetch_array($arr3);
+	}
+?>
+<table border=1 align='center'>
+	<span style="color:blue;margin-left:200;font-size:20">订单详情<span>
+	<tr>
+		<td class="title">订单编号:</td>
+		<td><? echo $orderForm[0] ?></td>
+	</tr>
+	<tr>
+		<td class="title">用户邮箱:</td>
+		<td class="value"><? echo $orderForm[1] ?></td>
+	</tr>
+		<td class="title">用户姓名:</td>
+		<td class="value"><? echo $userInfo[1] ?></td>
+	</tr>
+	<tr>
+		<td class="title">书籍名称:</td>
+		<td class="value">《<? echo $book[0] ?>》</td>
+	</tr>
+	<tr>
+		<td class="title">购买数量:</td>
+		<td class="value"><? echo $orderForm[3] ?>(本)</td>
+	</tr>
+	<tr>
+		<td class="title">用户地址:</td>
+		<td class="value"><? echo $userInfo[2] ?></td>
+	</tr>
+	<tr>
+		<td class="title">邮&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp编:</td>
+		<td class="value"><? echo $userInfo[3] ?></td>
+	</tr>
+	<tr>
+		<td class="title">联系电话:</td>
+		<td class="value">
+		<? echo $userInfo[4][0].$userInfo[4][1].$userInfo[4][2].
+			"****".$userInfo[4][7].$userInfo[4][8].$userInfo[4][9].$userInfo[4][10] ?></td>
+	</tr>
+	<tr>
+		<td class="title">发货状态:</td>
+		<td class="value" value='$orderForm[5]' id='sent'>
+			<? if($orderForm[5]==1){echo "已发货";}else{echo "未发货";} ?></td>
+	</tr>
+	<tr>
+		<td class="title">下单时间:</td>
+		<td class="value"><? echo $orderForm[4] ?></td>
+	</tr>
+</table>
+<script type='text/javascript'>
+	function colorOfsent_onload()
+	{
+		var sent = document.getElementById('sent');
+		var clr = <? echo $orderForm[5] ?>;
+		if(clr == 1)
+		{
+			sent.style.color = "green";
+		}
+		else
+		{
+			sent.style.color = "red";
+		}
+	}
+</script>
+</body>
+</html>

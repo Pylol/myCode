@@ -1,0 +1,72 @@
+<?php
+?>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>后台管理系统</title>
+<style type="text/css">
+<!--
+#content_tr{
+	border:1px solid #73BDE8;
+}
+#content_tr td{
+	font-size: 14px;
+	text-align: center;
+}
+#content_tr td.header_td{
+	background-color:#73BDE8;
+	color: white;
+	font-size:20px;
+	text-align: center;
+}
+-->
+</style>
+<script type="text/javascript">
+</script>
+</head>
+<body>
+	<table id='content_tr'>
+		<tr>
+			<td style="width:200px;" class='header_td'>邮箱</td>
+			<td style="width:60px;" class='header_td'>姓名</td>
+			<td style="width:300px;"class='header_td'>地址</td>
+			<td style="width:70px;"class='header_td'>邮编</td>
+			<td style="width:90px;"class='header_td'>联系方式</td>
+			<td style="width:200px;"class='header_td'>注册时间</td>
+			<td style="width:200px;"class='header_td'>上次登录</td>
+			<td style="width:80px;"class='header_td'>购物车</td>
+		</tr>
+		<?php
+			$conn = mysql_connect("125.221.225.210:3306","root","88888888");
+			mysql_select_db("db_BookStore");
+			mysql_query("set names utf8");
+
+			$sql = "select * from tb_User";
+			$arr = mysql_query($sql, $conn);
+			while($value = mysql_fetch_array($arr))
+			{
+				$sql_1 = "select * from tb_UserInfo where user_Email='$value[0]'";
+				$userInfo = mysql_query($sql_1);
+				if($userInfo)
+				{
+					$user = mysql_fetch_array($userInfo);
+				}
+				$user[4] = substr_replace($user[4], '****', 3, 4);
+				$info = "
+				<tr>
+					<td class='td'>$user[0]</td>
+					<td class='td'>$user[1]</td>
+					<td class='td'>$user[2]</td>
+					<td class='td'>$user[3]</td>
+					<td class='td'>$user[4]</td>
+					<td class='td'>$value[2]</td>
+					<td class='td'>$value[3]</td>
+					<td class='td'><a href='shopcar.html?email=$user[0]'>购物车</a></td>
+				</tr>
+				";
+				echo $info;
+			}
+		?>
+	</table>
+</body>
+</html>

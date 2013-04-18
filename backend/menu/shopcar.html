@@ -1,0 +1,86 @@
+<?php
+	$conn = mysql_connect("125.221.225.210:3306","root","88888888");
+	mysql_select_db("db_BookStore");
+	mysql_query("set names utf8");
+
+	$email = $_GET['email'];
+?>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>后台管理系统</title>
+<link rel="stylesheet" type="text/css" href="shopcar.css">
+</head>
+<body>
+	<div id="main">
+		<div id="logo">
+			<img src="shopcar_logo.png" id="shopcar">
+		</div>
+		<h1 id="header">ShoppingCart</h1>
+	</div>
+	<div id="infoHead">
+			<img src="jiantou.png">
+			<h3>详细信息</h3>
+			<hr style="width:100%;border:2px dashed gray;"/>
+	</div>
+	<div id="booklist">
+		<div id="infoList">
+			<img src="baidu.jpg" class="box">
+			<div id="userInfo">
+				<label>邮箱:</label>
+				<font>505600376@qq.com</font><br />
+				<label>姓名:</label>
+				<font>张委</font><br />
+				<label>地址:</label>
+				<font>湖南省湘潭市雨湖区湖南科技大学北校区</font><br />
+				<label>邮编:</label>
+				<font>411201</font><br />
+				<label>电话:</label>
+				<font>187****0072</font><br />
+			</div>
+		</div>
+	</div>
+	<div id="list">
+		<div id="listHead">
+			<img src="jiantou.png">
+			<h3>选购书籍</h3>
+			<hr style="width:100%;border:2px dashed gray;"/>
+		</div>
+		<?php
+			$sql = "select * from tb_UserShopCar where user_Email='$email'";
+			$arr = mysql_query($sql, $conn);
+			while($value = mysql_fetch_array($arr))
+			{
+				$sql = "select * from tb_BookInfo where book_ID={$value[1]}";
+				$book = mysql_query($sql, $conn);
+
+				while($bookinfo = mysql_fetch_array($book))
+				{
+					$sql = "select * from tb_BookPrice where book_ID={$bookinfo[0]}";
+					$pr = mysql_query($sql);
+					$price = mysql_fetch_array($pr);
+			
+					$content = "
+					<div id='book_selected'>
+						<img src='../../images/$bookinfo[5]' >
+						<div id='part1'>
+							<table>
+								<tr><td>$bookinfo[1]</td></tr>
+								<tr><td>$bookinfo[6]</td></tr>
+								<tr><td>$bookinfo[2]</td></tr>
+								<tr><td style='color:green'>现在有货</td></tr>
+							</table>
+						</div>
+						<div id='price'>
+							<font>价格:￥$price[1]</font>
+						</div>
+					</div>
+					";
+					echo $content;
+				}
+			}
+		?>
+		</div>
+	</div>
+</body>
+</html>

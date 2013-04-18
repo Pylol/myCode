@@ -1,0 +1,89 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>后台管理系统</title>
+<script type='text/javascript'>
+function showForm_onclick(order_ID)
+{
+	var url="orderForm.html?order_ID="+order_ID;
+	var para = "Width=500,Height=350,Top=100,Left=400,resizable=no,edge=sunken,location=no";
+	var orderForm_window = window.open(url,"bookDetails",para);
+//	var orderForm_window = window.showModalDialog(url,"bookDetails",para);
+	orderForm_window.focus();
+}
+</script>
+<style type="text/css">
+<!--
+#content_tr{
+	border:1px solid #73BDE8;
+}
+#content_tr td.header_td{
+	background-color:#73BDE8;
+	color: white;
+	font-size:20px;
+	text-align: center;
+	width:100px;
+}
+#offshelf{
+	float: right;
+}
+.list_td{
+	text-align: center;
+}
+#view:hover{
+	text-decoration: underline;
+}
+-->
+</style>
+<script type="text/javascript">
+</script>
+</head>
+<body>
+	<table id='content_tr'>
+		<tr>
+			<td  style="width:50px;" class='header_td'>编号</td>
+			<td  style="width:200px;" class='header_td'>用户邮箱</td>
+			<td  class='header_td'>书籍名称</td>
+			<td  style="width:50px;" class='header_td'>数量</td>
+			<td  style="width:200px;" class='header_td'>下单时间</td>
+			<td  class='header_td'>是否发货</td>
+			<td  class='header_td'>详情查看</td>
+		</tr>
+		<?php
+			@$conn = mysql_connect('125.221.225.210:3306','root','88888888');
+			@mysql_select_db('db_BookStore',$conn);
+			@mysql_query("set names utf8");
+			$sql = "select * from tb_orderForm";
+			$arr = mysql_query($sql,$conn);
+			while(@$value = mysql_fetch_array($arr))
+			{
+				if($value[5] == 1)
+				{
+					$SentOrNot = "right1.jpg";
+				}
+				else
+				{
+					$SentOrNot = "wrong1.jpg";
+				}
+				$sql_1 = "select book_Name from tb_BookInfo where book_ID={$value[2]}";
+				$name = mysql_query($sql_1);
+				if($name)
+				{
+					$book_name = mysql_fetch_array($name);
+				}
+				$book_menu3 .= "<tr>
+									<td class='list_td'>$value[0]</td>
+									<td class='list_td'>$value[1]</td>
+									<td style='width:200px;'class='list_td'>$book_name[0]</td>
+									<td class='list_td'>$value[3]</td>
+									<td class='list_td'>$value[4]</td>
+									<td class='list_td'><img src='$SentOrNot' ></td>
+									<td class='list_td'>
+					<a style='Cursor:pointer;color:blue;' onclick='showForm_onclick($value[0])' id='view'>查看</a></td>
+								</tr>";
+			}
+			echo $book_menu3;
+		?>
+	</table>
+</body>
+</html>

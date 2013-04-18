@@ -29,7 +29,7 @@ TD {
         <TR>
           <TD width=15 background=images/ileft.gif height=43></TD>
           <TD width=620 background=images/i_topbg2.gif>
-            <a href="http://125.221.225.209/BugooShop/index-v1.html"><IMG height=43 src="images/i_top1.gif" width=43></a>
+            <a href="http://125.221.225.208/book/index-v1.html"><IMG height=43 src="images/i_top1.gif" width=43></a>
           </TD>
           <TD width=16><IMG height=43 src="images/iright.gif" width=16></TD>
         </TR>
