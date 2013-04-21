@@ -36,9 +36,9 @@
 	}
 	
 	//8、将验证码加入到图片
-	for($i=0 ;$i<strlen($_SESSION['code']) ; $i++)
+	for($i=0 ; $i<4 ; $i++)
 	{
-		imagestring($img,5,20+$i*15,mt_rand(0,10),$_SESSION['code'][$i],$rand_color);
+		imagestring($img,5,20+$i*15,mt_rand(0,10),$num[$i],$rand_color);
 	}
 	
 	//9、输出验证码

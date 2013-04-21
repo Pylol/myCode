@@ -1,0 +1,29 @@
+<html>
+<head>
+	<title>搜索</title>
+</head>
+<body>
+	<form method="post" action=" ">
+		<input type="text" id="input" name="input"><input type="submit" id="submit" value="搜索" name="submit">
+	</form>
+</body>
+</html>
+<?php
+if( isset($_POST['submit']) && ($_POST['submit']=="搜索" ) && !empty($_POST['input'] ))
+{
+	$content = $_POST['input'];
+	$conn = mysql_connect("125.221.225.210:3306","root","88888888");
+	mysql_select_db("db_BookStore");
+	mysql_query("set names utf8");
+
+	$sql = "select * from tb_BookInfo 
+		where (book_Name like '%{$content}%' or book_Intro like '%{$content}%') and book_Class=1";
+	$arr = mysql_query($sql, $conn);
+	while($value = mysql_fetch_array($arr))
+	{
+		foreach ($value as $key => $value) {
+			echo $key."=>"."$value"."<br />";
+		}
+	}
+}
+?>

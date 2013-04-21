@@ -1,32 +1,94 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-<meta http-equiv="Content-Type" content="image/png">
 <head>
 	<title>登陆</title>
 	<script type="text/javascript">
+	var error = 0;
+	var Email_ok = true;
+	var passwd_ok = true;
+	var com_passwd_ok = true;
+	var verificate_ok = true;
 	function init_onload()
 	{
 		document.form1.Email.value = "";
 		document.form1.passwd.value = "";
+		document.form1.com_passwd.value = "";
 		document.form1.verificate.value = "";
+	}
+	function Email_onchange()
+	{
+		var Email = document.form1.Email.value;
+		var emailRegExp = /^[\w]+@([\w]+\.)+[\w]+$/;
+		var email_test = emailRegExp.test(Email);
+		if(!email_test)
+		{
+			document.getElementById("error_info").innerHTML = "邮箱格式不正确!";
+			document.form1.Email.focus();
+			document.form1.Email.select();
+			Email_ok = false;
+			return;
+		}
+		Email_ok = true;
+		document.getElementById("error_info").innerHTML = "" +"Email" + Email_ok;
+	}
+	function passwd_onchange()
+	{
+		var passwd = document.form1.passwd.value;
+		var passwdRegExp = /[^\w ]+/;
+		var passwd_test = passwdRegExp.test(passwd);
+		if(passwd_test)
+		{
+			document.getElementById("error_info").innerHTML = "密码包含非法字符!";
+			document.form1.passwd.focus();
+			document.form1.passwd.select();
+			passwd_ok = false;
+			return ;
+		}
+		passwd_ok = true;
+		document.getElementById("error_info").innerHTML = "";
+	}
+	/*function verificate_onchange()
+	{
+		var verificate = document.form1.verificate.value;
+		if(verificate != "<? session_start();echo $_SESSION['code'] ?>")
+		{
+			document.getElementById("error_info").innerHTML = "验证码输入错误!";
+			document.form1.verificate.focus();
+			document.form1.verificate.select();
+			verificate_ok = false;
+			return ;
+		}
+		verificate_ok = true;
+		document.getElementById("error_info").innerHTML = "" + "verificate" + verificate_ok;
+	}*/
+	function submit_onclick()
+	{
+		if(Email_ok && passwd_ok && com_passwd_ok && verificate_ok)
+		{
+			document.form1.submit();
+		}
+		else
+		{
+			document.getElementById("error_info").innerHTML = "注册信息不正确!";
+		}
 	}
 	</script>
 </head>
 <body onload="init_onload()">
 	<form name="form1" action="login.php" method="post">
 		<label for="Email">Email:</label>
-		<input type="text" name="Email"/>
+		<input type="text" name="Email" onchange="Email_onchange()"/>
 		<br />
-		<label for="Passwd">密码:</label>
-		<input type="password" name="passwd"/>
+		<label for="passwd">密码:</label>
+		<input type="password" name="passwd" onchange="passwd_onchange()" />
 		<br />
 		<label for="verificate">验证码:</label>
-		<input type="text" name="verificate" />
-		<a href=""><img src="code.php" alt="验证码"/></a>
+		<input type="text" name="verificate" maxlength="4" onchange="verificate_onchange()" />
+		<a href=""><img src="code.php" alt="验证码" /></a>
 		<br />
-		<input type="submit" value="登陆" />
+		<input type="button" value="登录" onclick="submit_onclick()"/>
 	</form>
-	<p id="error_info"></p>
+	<p id="error_info" style="color:red;"></p>
 </body>
 </html>
