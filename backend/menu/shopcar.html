@@ -23,20 +23,28 @@
 			<h3>详细信息</h3>
 			<hr style="width:100%;border:2px dashed gray;"/>
 	</div>
+	<?php
+		$sql = "select * from tb_UserInfo where user_Email='$email'";
+		$arr = mysql_query($sql, $conn);
+		if($arr)
+		{
+			$value = mysql_fetch_array($arr);
+		}
+	?>
 	<div id="booklist">
 		<div id="infoList">
 			<img src="baidu.jpg" class="box">
 			<div id="userInfo">
 				<label>邮箱:</label>
-				<font>505600376@qq.com</font><br />
+				<font><? echo $value[0] ?></font><br />
 				<label>姓名:</label>
-				<font>张委</font><br />
+				<font><? echo $value[1] ?></font><br />
 				<label>地址:</label>
-				<font>湖南省湘潭市雨湖区湖南科技大学北校区</font><br />
+				<font><? echo $value[2] ?></font><br />
 				<label>邮编:</label>
-				<font>411201</font><br />
+				<font><? echo $value[3] ?></font><br />
 				<label>电话:</label>
-				<font>187****0072</font><br />
+				<font><? echo $value[4] ?></font><br />
 			</div>
 		</div>
 	</div>

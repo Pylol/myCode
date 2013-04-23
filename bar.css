@@ -1,0 +1,84 @@
+#topBar{
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 2em;
+    background: #464646;
+    opacity: 0.85;
+    z-index: 9999;
+    color: #FFFFFF;
+}
+#footer{
+    clear: both;
+    width: 100%;
+    height: 10em;
+    margin-top: 5em;
+    text-align: center;
+    background: #464646;
+    border-top: 2px solid #ccc;
+}
+#topBar ul{
+    margin-top: 0;
+    margin-bottom: 0;
+    list-style: none;
+    line-height: 2em;
+}
+#topBar ul#topBar_logo li a{
+    display: inline-block;
+    width: 40px;
+    height: 32px;
+    background: url(img/BuGoo_32.png) no-repeat;
+}
+#topBar ul#topBar_logo li{
+    float: left;
+    font-weight: bold;
+}
+#topBar ul#topBar_login li{
+    float: right;
+}
+#topBar ul#topBar_login li a{
+    display: inline-block;
+    padding-left: 1.5em;
+    margin-left: 1em;
+    text-decoration: none;
+    color: #FFFFFF;
+    font-size: 0.85em;
+}
+#topBar ul#topBar_login li a.user{
+    background: url(img/user_15.png) no-repeat 0 50%;
+}
+#topBar ul#topBar_login li a.cart{
+    background: url(img/cart_15.png) no-repeat 0 50%;
+}
+
+#footer ul{
+    margin: 2.5em;
+    display: inline-block;
+}
+#footer ul li{
+    float: left;
+    margin: 0 1em;
+    list-style: none;
+    color: #999;
+}
+#footer ul li a{
+    color: #999;
+    text-decoration: none;
+}
+#footer span{
+    color: #F2E85C;
+}
+#main_area{
+    width:500px;
+    height:500px;
+    border:1px solid #079475;
+    background-color: #a4eddd;
+    margin-top:60px;
+    margin-left:350px;
+    border-radius: 10px;
+    box-shadow: 20px 0 20px #009471;
+    float: left;
+}
+#youxiang_img2{
+}

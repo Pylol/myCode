@@ -3,6 +3,7 @@
 <HEAD>
 <TITLE>布谷书城后台管理</TITLE>
 <META http-equiv=Content-Type content="text/html; charset=gb2312">
+  <link rel="SHORTCUT ICON" href="favicon.ico" type="image/x-icon" />
 <STYLE>
 TD {
 	FONT-SIZE: 11px; COLOR: #000000; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serIf; TEXT-DECORATION: none
@@ -29,7 +30,7 @@ TD {
         <TR>
           <TD width=15 background=images/ileft.gif height=43></TD>
           <TD width=620 background=images/i_topbg2.gif>
-            <a href="http://125.221.225.208/book/index-v1.html"><IMG height=43 src="images/i_top1.gif" width=43></a>
+            <a href="http://125.221.225.209/bgstore/index.php"><IMG height=43 src="images/i_top1.gif" width=43></a>
           </TD>
           <TD width=16><IMG height=43 src="images/iright.gif" width=16></TD>
         </TR>
@@ -40,9 +41,9 @@ TD {
               <TBODY>
               
               <TR>
-                <TD width=155><IMG height=140 src="images/logo.jpg" width=155 useMap=#Map border=0></TD>
+                <TD width=250><IMG height=140 src="images/BuGoo_200.png" width=155 useMap=#Map border=0 style="padding-top:15px;"></TD>
                 <TD vAlign=top align=left width=214>
-                  <TABLE cellSpacing=0 cellPadding=0 width=167 border=0>
+                  <TABLE cellSpacing=0 cellPadding=0 width=167 border=00 style="margin:30px;">
                     <TBODY>
                     
                     <TR>

@@ -2,6 +2,25 @@
 require("PHPMailer/class.phpmailer.php"); 
 require("PHPMailer/class.smtp.php");  
 
+$from = $_POST['user'];
+$subject = $_POST['subject'];
+$content = $_POST['content'];
+
+$conn = mysql_connect("125.221.225.210:3306","root","88888888");
+mysql_select_db("db_BookStore");
+mysql_query("set names utf8");
+$sql = "select * from tb_UserInfo where user_Email = '$from'";
+echo $sql;
+$arr = mysql_query($sql, $conn);
+if($arr)
+{
+	$user = mysql_fetch_array($arr);
+}
+else
+{
+	die("请先登陆");
+}
+
 $mail=new PHPMailer();
 
 // 设置PHPMailer使用SMTP服务器发送Email
@@ -14,17 +33,17 @@ $mail->CharSet='UTF-8';
 $mail->AddAddress('505600376@qq.com');
 
 // 设置邮件正文
-$message='<B>这是一封群发测试邮件，主页《联系我们》功能块测试</B>';
+$message=$user[0].$user[1].'<B>这是一封群发测试邮件，主页《联系我们》功能块测试</B>';
 $mail->Body=$message;
 // 设置邮件头的From字段。
 // 对于网易的SMTP服务，这部分必须和你的实际账号相同，否则会验证出错。
-$mail->From='Boogu508@163.com';
+$mail->From="Boogu508@163.com";
 
 // 设置发件人名字
-$mail->FromName='508旗下公司布谷书城';
+$mail->FromName=$user[1];
 
 // 设置邮件标题
-$mail->Subject='联系管理员功能块测试';
+$mail->Subject='书城顾客来信';
 
 // 设置SMTP服务器。这里使用网易的SMTP服务器。
 $mail->Host='smtp.163.com';
@@ -37,5 +56,10 @@ $mail->Username='Boogu508';
 $mail->Password='boogu88888888';
 
 // 发送邮件。
-$mail->Send();
+$ok = $mail->Send();
+
+if($ok)
+{
+header("Location:http://125.221.225.209/bgstore");
+}
 ?>

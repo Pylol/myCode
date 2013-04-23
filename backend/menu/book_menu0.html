@@ -20,10 +20,9 @@
 	width:350px;
 }
 #page{
-	width:230px;
+	width:240px;
 	height:20px;
 	float:right;
-	margin:10px;
 }
 -->
 </style>
@@ -79,7 +78,7 @@
 			{
 				$page_string .= "<a href='?page=1'>首页</a> | <a href='?page=".($page-1)."'>上一页</a>";
 			}
-			$page_string .= "| $page |";
+			$page_string .= "| $page/$page_count |";
 			if($page == $page_count)
 			{
 				$page_string .= "下一页 | 尾页";

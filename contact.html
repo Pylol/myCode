@@ -1,0 +1,76 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<link rel="SHORTCUT ICON" href="img/icon_contact.ico" type="image/x-icon" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>联系我们</title>
+<link rel="stylesheet" type="text/css" href="contact.css">
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="contact.js"></script>
+</head>
+<body bgcolor="#1cba98">
+	<div id="father_list">
+		<div id="list">
+			<ul>
+				<li><a class="normal clicked" id="item1"
+					 onmouseover="contact_onmouseover('1')" onmouseout="contact_onmouseout('1')" onclick="contact_onclick('1')">联系我们</a></li>
+				<li><a class="normal" id="item2" 
+					 onmouseover="contact_onmouseover('2')" onmouseout="contact_onmouseout('2')" onclick="contact_onclick('2')">关于我们</a></li>
+			</ul>
+		</div>
+	</div>
+	<div id="main_area">
+		<div id="main_header">
+			<p id="main_header_text">联系我们</p>
+		</div>
+		<div id="jiao">
+			<img src="img/jiao.png" >
+		</div>
+		<div id="father_info">
+		<div id="info">
+			<form action="sendemail.html" method="post">
+			<table>
+				<tr>
+					<td class="label">发件人:&nbsp&nbsp</td>
+					<td><input type="text" name="user" value="123456789@qq.com" readonly></td>
+				</tr>
+				<tr>
+					<td class="label">主&nbsp&nbsp&nbsp题:&nbsp&nbsp</td>
+					<td><input type="text" name="subject"  ><br /></td>
+				</tr>
+				</tr>
+					<td class="label">内&nbsp&nbsp&nbsp容:&nbsp&nbsp</td>
+				</tr>
+				<tr>
+					<td  colspan="2"><textarea cols="35" rows="10" name="content"></textarea></td>
+				</tr>
+				<tr>
+					<td  colspan="2"><input type="submit" name="submit" value="发送" style="width:100px;height:50px;margin-left:150px;">
+					<a href="index.php" style="text-decoration:none;">
+						<input type="button" name="button" value="返回" style="width:100px;height:50px;margin-left:15px;">
+					</a>
+					</td>
+				</tr>
+			</table>
+			</form>
+
+			<div id="about">
+				<p>
+					508旗下布谷书城小组成员列表:<br />
+						组长：汤亮<br />
+						小组成员：张委、周权、敖炼文、刘超、粱丽红<br />
+									布谷书城<br />
+				</p>
+			</div>
+		</div>
+	</div>
+	</div>
+
+	<div id="youxiang_img2">
+		<img src="./img/youxiang2.jpg" >
+	</div>
+	<?php
+		include("bar.html");
+	?>
+</body>
+</htmL>

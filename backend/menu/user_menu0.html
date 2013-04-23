@@ -20,7 +20,7 @@
 	text-align: center;
 }
 #page{
-	width:230px;
+	width:240px;
 	height:20px;
 	float:right;
 	margin:10px;
@@ -81,7 +81,7 @@
 			{
 				$page_string .= "<a href='?page=1'>首页</a> | <a href='?page=".($page-1)."'>上一页</a>";
 			}
-			$page_string .= "| $page |";
+			$page_string .= "| $page/$page_count |";
 			if($page == $page_count)
 			{
 				$page_string .= "下一页 | 尾页";
@@ -101,7 +101,7 @@
 				{
 					$user = mysql_fetch_array($userInfo);
 				}
-				$user[4] = substr_replace($user[4], '****', 3, 4);
+		//		$user[4] = substr_replace($user[4], '****', 3, 4);
 				$info = "
 				<tr>
 					<td class='td'>$user[0]</td>
