@@ -20,7 +20,7 @@
 	width:350px;
 }
 #page{
-	width:240px;
+	width:250px;
 	height:20px;
 	float:right;
 }
@@ -52,7 +52,7 @@
 			{
 				$page = 1;
 			}
-			$page_size = 2; //最大记录条数
+			$page_size = 10; //最大记录条数
 			$sql = "SELECT count(*) as amount FROM tb_BookInfo";
 			$result = mysql_query($sql);
 			$row = mysql_fetch_array($result);

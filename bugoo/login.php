@@ -14,7 +14,7 @@
 	<br />
 	验证码:
 	<input type="text" name="validationcode" maxlength="4" />
-	<img src="imgcode.php" alt="验证码" style="cursor:pointer;" onclick="newcode(this,this.src);"/>
+	<img src="http://125.221.225.209/bgstore/imgcode.php" alt="验证码" style="cursor:pointer;" onclick="newcode(this,this.src);"/>
 	<br />
 	<input type="submit" value="登录" name="submit"/>
 </form>

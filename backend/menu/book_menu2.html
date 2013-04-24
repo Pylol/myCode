@@ -38,7 +38,7 @@
 		$dst_width = 300;
 		$dst_height = 300;
 		$type = $_FILES['path']['name'];
-		echo "<script language='javascript'>alert('{$type}');</script>";
+//		echo "<script language='javascript'>alert('{$type}');</script>";
 		if ((($_FILES["path"]["type"] == "image/gif") || ($_FILES["path"]["type"] == "image/jpeg")
       		|| ($_FILES["path"]["type"] == "image/pjpeg")) && ($_FILES["path"]["size"] < 60000))
       	{
@@ -55,15 +55,17 @@
 	          else
 	          {
 	        //     move_uploaded_file($_FILES["path"]["tmp_name"],"../../images/" . $_FILES["path"]["name"]);
-	          		list($res_width,$res_height) = getimagesize($_FILES['path']['tmp_name']);
+	          		list($res_width,$res_height) = getimagesize($_FILES['path']['tmp_name']); //big_cover
 	          		$thumb = imagecreatetruecolor(300,300);
 	          		$source = imagecreatefromjpeg($_FILES['path']['tmp_name']);
 	          		$ok = imagecopyresized($thumb, $source, 0, 0, 0, 0, 300, 300, $res_width, $res_height);
-	          		if($ok)
-	          		{
-	          			echo "ok";
-	          		}
 	          		imagejpeg($thumb,"../../images/".$_FILES['path']['name']);
+
+	          		$thumb = imagecreatetruecolor(60, 45);					//small_cover
+	          		$source = imagecreatefromjpeg($_FILES['path']['tmp_name']);
+	          		$ok = imagecopyresized($thumb, $source, 0, 0, 0, 0, 45, 60, $res_width, $res_height);
+	          		imagejpeg($thumb,"../../images/"."small-".$_FILES['path']['name']);
+	          		
 	            	$file_ok = true;
 	      	  }
 	      	}
