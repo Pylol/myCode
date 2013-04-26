@@ -67,7 +67,7 @@ function showForm_onclick(order_ID)
 			{
 				$page = 1;
 			}
-			$page_size = 2; //最大记录条数
+			$page_size = 10; //最大记录条数
 			$sql = "SELECT count(*) as amount FROM tb_orderForm where SentOrNot=0";
 			$result = mysql_query($sql);
 			$row = mysql_fetch_array($result);

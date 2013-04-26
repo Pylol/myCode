@@ -242,7 +242,7 @@ padding-left:20PX;
 				</ul>
 			</div>
 			<div id="right"> 
-				<div id="current">&nbsp;&nbsp;&nbsp;&nbsp;当前位置:</div>
+				<p id="current">当前位置:</p>
 				<div id="main" style="overflow:scroll;height:100%;margin-left:-10px;">
 					<iframe id="iframe" src='' style="width:100%;height:100%;"></iframe>
 				</div>
