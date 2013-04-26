@@ -209,7 +209,7 @@ padding-left:20PX;
 	<div id="topDiv">
 		<div id="tmenu">
 			<ul>
-				<li style="width:100px;"><a href="http://125.221.225.209/bgstore">书城首页</a></li>
+				<li style="width:100px;"><a href="http://125.221.225.210/bgstore">书城首页</a></li>
 				<li ><a style="Cursor:pointer" onclick="management_Book()">书籍管理</a></li>
 				<li ><a style="Cursor:pointer" onclick="management_User()">用户管理</a></li>
 				<li ><a style="Cursor:pointer" onclick="management_order()">订单管理</a></li>

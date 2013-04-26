@@ -11,11 +11,32 @@ TD {
 .input_1 {
 	BORDER-RIGHT: #999999 1px solid; PADDING-RIGHT: 2px; BORDER-TOP: #999999 1px solid; PADDING-LEFT: 2px; LIST-STYLE-POSITION: inside; FONT-SIZE: 12px; PADDING-BOTTOM: 2px; MARGIN-LEFT: 10px; BORDER-LEFT: #999999 1px solid; COLOR: #333333; PADDING-TOP: 2px; BORDER-BOTTOM: #999999 1px solid; FONT-FAMILY: Arial, Helvetica, sans-serIf; LIST-STYLE-TYPE: none; HEIGHT: 18px; BACKGROUND-COLOR: #dadedf
 }
+#main{
+  width:660px;
+  height:500px;
+  position:absolute;
+  top:10%;
+  left:26.5%;"
+  float: left;
+}
+#header{
+  width:620px;
+  height:70px;
+}
+#body{
+  width:660px;
+  height:500px;
+  float: left;
+}
 </STYLE>
 <META content="MSHTML 6.00.6000.16705" name=GENERATOR>
 </HEAD>
 <BODY>
-<IMG src="images/adminsystem.jpg" border=0 style="position:absolute;top:16%;left:26.5%;">
+<div id="main">
+<div id="header">
+  <IMG src="images/adminsystem.jpg" border=0 >
+</div>
+<div id="body">
 <TABLE cellSpacing=0 cellPadding=0 width=651 align=center border=0>
   <TBODY>
   
@@ -30,7 +51,7 @@ TD {
         <TR>
           <TD width=15 background=images/ileft.gif height=43></TD>
           <TD width=620 background=images/i_topbg2.gif>
-            <a href="http://125.221.225.209/bgstore/index.php"><IMG height=43 src="images/i_top1.gif" width=43></a>
+            <a href="http://125.221.225.210/bgstore/index.php"><IMG height=43 src="images/i_top1.gif" width=43></a>
           </TD>
           <TD width=16><IMG height=43 src="images/iright.gif" width=16></TD>
         </TR>
@@ -108,5 +129,7 @@ TD {
   </TR>
   </TBODY>
 </TABLE>
+</div>
+</div>
 </BODY>
 </HTML>
